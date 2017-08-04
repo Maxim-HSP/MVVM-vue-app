@@ -12,7 +12,10 @@ Vue.use(Vuex)
 
 //根store(合并的store)
 //在各局部模块中，getter和mutation的第一个参数是局部state，第三参数是rootstate,即根store的state。同时，action可以通过context.rootState获取到根级别state  
+
 //而在各vue组件中，访问各store模块需要使用"this.$store.state.模块名"访问相应的state，这也意味着map辅助函数的数组写法不适用于module化的store(因为map函数数组写法默认访问的是this.$store.state)，而应该改成"mapState({data:state=>state.模块名.data})"
+
+// 另外，还有一种更简便的写法，你可以将模块的名称字符串作为第一个参数传递给map函数，这样所有绑定都会自动将该模块作为上下文，如"...mapMutations('navTabs', ['addTab'])"
 export const store = new Vuex.Store({
     actions,
     mutations,
